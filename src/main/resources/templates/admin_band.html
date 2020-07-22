@@ -12,48 +12,48 @@
 <header th:replace="fragments/admin-nav.html :: admin-nav"></header>
 <h3>Create or modified band</h3>
 <form action="/admin/band/search" method="post">
-    <!--    <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>-->
     <div class="row">
         <div class="input-field col s6 offset-s3">
             <i class="material-icons prefix">search</i>
-            <input class="center-align validate" id="nameSearch" name="reference" type="text">
+            <input class="center-align validate" id="nameSearch" name="name" type="text">
             <label for="nameSearch">Search by name</label>
         </div>
     </div>
 </form>
 <div class="row">
-    <form class="col s12">
+    <form class="col s12" method="post" th:action="@{/admin/band}" th:object="${band}">
         <div class="row">
             <div class="input-field col s6">
-                <input placeholder="Name" id="name" type="text" class="validate">
+                <input th:field="*{id}" type="hidden">
+                <input placeholder="Name" id="name" type="text" class="validate" th:field="*{name}">
                 <label for="name">Name</label>
             </div>
             <div class="input-field col s6">
-                <input id="music_style" type="text" class="validate">
+                <input id="music_style" type="text" class="validate" th:field="*{musiqStyle}">
                 <label for="music_style">Music style</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s6">
-                <input id="creation_year" type="text" class="validate">
+                <input id="creation_year" type="text" class="validate" th:field="*{creationYear}">
                 <label for="creation_year">Creation year</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s8">
-                <input id="facebook_link" type="text" class="validate">
+                <input id="facebook_link" type="text" class="validate" th:field="*{facebookLink}">
                 <label for="facebook_link">Facebook link</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s8">
-                <input id="site_link" type="text" class="validate">
+                <input id="site_link" type="text" class="validate" th:field="*{siteLink}">
                 <label for="site_link">Site link</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s8">
-                <input id="youtube_link" type="text" class="validate">
+                <input id="youtube_link" type="text" class="validate" th:field="*{youtubeLink}">
                 <label for="youtube_link">Youtube link</label>
             </div>
         </div>
@@ -75,8 +75,6 @@
         </div>
     </form>
 </div>
-
-
 
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

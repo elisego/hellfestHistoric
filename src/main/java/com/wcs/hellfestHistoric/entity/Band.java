@@ -12,7 +12,7 @@ public class Band {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private  String name;
+    private String name;
 
     @Column(name= "creation_year")
     private  String creationYear;
@@ -35,7 +35,7 @@ public class Band {
     @JoinTable(name = "band_concert",
             joinColumns = @JoinColumn(name = "band_id"),
             inverseJoinColumns = @JoinColumn(name = "concert_id"))
-    private List<Concert> certifications = new ArrayList<>();
+    private List<Concert> concerts = new ArrayList<>();
 
     public Band() {
     }
@@ -104,11 +104,11 @@ public class Band {
         this.image = image;
     }
 
-    public List<Concert> getCertifications() {
-        return certifications;
+    public List<Concert> getConcerts() {
+        return concerts;
     }
 
-    public void setCertifications(List<Concert> certifications) {
-        this.certifications = certifications;
+    public void setConcerts(List<Concert> concerts) {
+        this.concerts = concerts;
     }
 }
