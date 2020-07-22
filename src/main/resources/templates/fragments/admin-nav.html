@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/style_admin.css}" type="text/css">
+</head>
+<body>
+<header th:fragment="admin-nav">
+
+    <ul id="slide-out" class="sidenav sidenav-fixed red accent-4">
+        <li><a href="/admin/band">Band</a></li>
+        <li><a href="/admin/concert">Concert</a></li>
+    </ul>
+
+</header>
+
+</body>
+</html>

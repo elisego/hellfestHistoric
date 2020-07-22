@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang=en xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <!-- Compiled and minified CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+</head>
+<body>
+<header>
+</header>
+<h1 class="center-align red accent-4">Welcome in Historic Hellfest</h1>
+<form action="/home/search" method="post">
+<!--    <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>-->
+    <div class="row">
+        <div class="input-field col s6 offset-s3">
+            <i class="material-icons prefix">search</i>
+            <input class="center-align validate" id="nameSearch" name="reference" type="text">
+            <label for="nameSearch">Search by name</label>
+        </div>
+    </div>
+</form>
+
+
+<script crossorigin="anonymous"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        src="https://code.jquery.com/jquery-3.4.1.slim.min.js">
+</script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

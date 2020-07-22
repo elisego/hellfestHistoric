@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style_admin.css}" type="text/css">
+</head>
+<body>
+<header th:replace="fragments/admin-nav.html :: admin-nav"></header>
+<h3>Create or modified concert</h3>
+<form class="col s12">
+    <div class="row">
+        <div class="input-field col s8">
+            <select>
+                <option value="" disabled selected>Choose your option</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+            </select>
+            <label>Materialize Select</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s6">
+            <input class="validate" id="scene" type="text">
+            <label for="scene">Scene</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s6">
+            <input class="validate" id="date" type="text">
+            <label for="date">Date</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s5">
+            <input class="validate" id="beginning_hour" type="text">
+            <label for="beginning_hour">Beginning hour</label>
+        </div>
+        <div class="input-field col s5 offset-s2">
+            <input class="validate" id="end_hour" type="text">
+            <label for="end_hour">End hour</label>
+        </div>
+    </div>
+    <div class="rom">
+        <div class="file-field input-field col s6">
+            <div class="btn">
+                <span>File</span>
+                <input type="file">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <button class="col s2 offset-s5 btn waves-effect waves-light red accent-4" name="action" type="submit">Apply
+            <i class="material-icons right">send</i>
+        </button>
+    </div>
+</form>
+<script crossorigin="anonymous"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        src="https://code.jquery.com/jquery-3.4.1.slim.min.js">
+</script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="/js/js_nav.js" type="text/JavaScript"></script>
+<script src="/js/js_admin.js" type="text/JavaScript"></script>
+</body>
+</html>
