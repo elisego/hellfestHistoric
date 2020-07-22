@@ -85,13 +85,17 @@ public class AdminController {
 
     // pour enregister le concert
     @PostMapping("/admin/concert")
-    public String postConcert(@ModelAttribute Concert concert) {
+    public String postConcert(@ModelAttribute Concert concert,
+                              @RequestParam(required = true) Long band) {
+
+        Optional<Band> optionalBand = bandRepository.findById(band);
+        if (optionalBand.isPresent()){
+            concert.setBand(optionalBand.get());
+        }
 
         concertRepository.save(concert);
 
         return "redirect:/admin/concert";
     }
-
-
-
 }
+
