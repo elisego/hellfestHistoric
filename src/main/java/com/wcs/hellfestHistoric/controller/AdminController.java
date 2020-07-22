@@ -1,7 +1,9 @@
 package com.wcs.hellfestHistoric.controller;
 
 import com.wcs.hellfestHistoric.entity.Band;
+import com.wcs.hellfestHistoric.entity.Concert;
 import com.wcs.hellfestHistoric.repository.BandRepository;
+import com.wcs.hellfestHistoric.repository.ConcertRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,10 @@ public class AdminController {
     @Autowired
     private BandRepository bandRepository;
 
+    @Autowired
+    private ConcertRepository concertRepository;
+
+    // pour afficher les info du groupe après la recherche
     @GetMapping("/admin/band")
     public String adminBand(Model model,
                             @RequestParam(required = false) String name) {
@@ -35,6 +41,7 @@ public class AdminController {
         return "admin_band";
     }
 
+    // pour enregister le groupe
     @PostMapping("/admin/band")
     public String postBand(@ModelAttribute Band band) {
 
@@ -43,6 +50,7 @@ public class AdminController {
         return "redirect:/admin/band";
     }
 
+    // rechercher un groupe par le nom exact
     @PostMapping("/admin/band/search")
     public String bandSearch(Model model, @RequestParam String name) {
 
@@ -56,10 +64,34 @@ public class AdminController {
         return "admin_band";
     }
 
+    // pour afficher les infos d'un concert
     @GetMapping("/admin/concert")
-    public String adminConcert() {
+    public String adminConcert(Model model,
+                            @RequestParam(required = false) Long id) {
 
-        return "admin_concert";
+       Concert concert = new Concert();
+
+        if (id != null) {
+            Optional<Concert> optionalConcert = concertRepository.findById(id);
+            if (optionalConcert.isPresent()) {
+                concert = optionalConcert.get();
+            }
+        }
+
+        model.addAttribute("concert", concert);
+        model.addAttribute("band", bandRepository.findAll());
+        return "admin_band";
     }
+
+    // pour enregister le concert
+    @PostMapping("/admin/concert")
+    public String postConcert(@ModelAttribute Concert concert) {
+
+        concertRepository.save(concert);
+
+        return "redirect:/admin/concert";
+    }
+
+
 
 }

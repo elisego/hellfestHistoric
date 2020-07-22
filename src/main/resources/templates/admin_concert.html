@@ -11,7 +11,7 @@
 <body>
 <header th:replace="fragments/admin-nav.html :: admin-nav"></header>
 <h3>Create or modified concert</h3>
-<form class="col s12">
+<form class="col s12" th:action="@{/admin/concert}" th:object="${band}">
     <div class="row">
         <div class="input-field col s8">
             <select>
