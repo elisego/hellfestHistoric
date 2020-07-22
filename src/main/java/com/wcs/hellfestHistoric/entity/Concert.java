@@ -27,6 +27,10 @@ public class Concert {
 
     private String image;
 
+    @ManyToOne
+    @JoinColumn(name="band_id")
+    private Band band;
+
     public Concert() {
     }
 
@@ -76,5 +80,13 @@ public class Concert {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Band getBand() {
+        return band;
+    }
+
+    public void setBand(Band band) {
+        this.band = band;
     }
 }

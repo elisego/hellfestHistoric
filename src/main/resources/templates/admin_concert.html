@@ -11,14 +11,14 @@
 <body>
 <header th:replace="fragments/admin-nav.html :: admin-nav"></header>
 <h3>Create or modified concert</h3>
-<form class="col s12" th:action="@{/admin/concert}" th:object="${band}">
+<form class="col s12" th:action="@{/admin/concert}" th:object="${concert}">
+    <input th:field="${concert.id}" type="hidden">
     <div class="row">
         <div class="input-field col s8">
-            <select>
-                <option value="" disabled selected>Choose your option</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
+            <select id="band" name="band">
+                <option value="" Select a band</option>
+                <option th:each="band: ${bands}"
+                        th:selected="${concert.band}"
             </select>
             <label>Materialize Select</label>
         </div>

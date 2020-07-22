@@ -79,8 +79,8 @@ public class AdminController {
         }
 
         model.addAttribute("concert", concert);
-        model.addAttribute("band", bandRepository.findAll());
-        return "admin_band";
+        model.addAttribute("bands", bandRepository.findAll());
+        return "admin_concert";
     }
 
     // pour enregister le concert
