@@ -19,7 +19,6 @@ public class AdminController {
     @Autowired
     private BandRepository bandRepository;
 
-
     @GetMapping("/admin/band")
     public String adminBand(Model model,
                             @RequestParam(required = false) String name) {
@@ -44,19 +43,18 @@ public class AdminController {
         return "redirect:/admin/band";
     }
 
-//    @PostMapping("/admin/band/search")
-//    public String bandSearch(Model model, @RequestParam String name) {
-//
-//        Band band = new Band();
-//        Optional<Band> optionalBand = bandRepository.findByName(name);
-//        if (optionalBand.isPresent()) {
-//            band = optionalBand.get();
-//        }
-//        model.addAttribute("band", band);
-//
-//        return "admin_band";
-//    }
+    @PostMapping("/admin/band/search")
+    public String bandSearch(Model model, @RequestParam String name) {
 
+        Band band = new Band();
+        Optional<Band> optionalBand = bandRepository.findByName(name);
+        if (optionalBand.isPresent()) {
+            band = optionalBand.get();
+        }
+        model.addAttribute("band", band);
+
+        return "admin_band";
+    }
 
     @GetMapping("/admin/concert")
     public String adminConcert() {

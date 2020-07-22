@@ -11,19 +11,20 @@
 <body>
 <header th:replace="fragments/admin-nav.html :: admin-nav"></header>
 <h3>Create or modified band</h3>
-<!--<form action="/admin/band/search" method="post">-->
-<!--    <div class="row">-->
-<!--        <div class="input-field col s6 offset-s3">-->
-<!--            <i class="material-icons prefix">search</i>-->
-<!--            <input class="center-align validate" id="nameSearch" name="reference" type="text">-->
-<!--            <label for="nameSearch">Search by name</label>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</form>-->
+<form action="/admin/band/search" method="post">
+    <div class="row">
+        <div class="input-field col s6 offset-s3">
+            <i class="material-icons prefix">search</i>
+            <input class="center-align validate" id="nameSearch" name="name" type="text">
+            <label for="nameSearch">Search by name</label>
+        </div>
+    </div>
+</form>
 <div class="row">
     <form class="col s12" method="post" th:action="@{/admin/band}" th:object="${band}">
         <div class="row">
             <div class="input-field col s6">
+                <input th:field="*{id}" type="hidden">
                 <input placeholder="Name" id="name" type="text" class="validate" th:field="*{name}">
                 <label for="name">Name</label>
             </div>
