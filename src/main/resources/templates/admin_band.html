@@ -3,11 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style_admin.css}" type="text/css">
 </head>
 <body>
 <header th:replace="fragments/admin-nav.html :: admin-nav"></header>
+<h3>Create or modified band</h3>
+<form action="/admin/band/search" method="post">
+    <!--    <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>-->
+    <div class="row">
+        <div class="input-field col s6 offset-s3">
+            <i class="material-icons prefix">search</i>
+            <input class="center-align validate" id="nameSearch" name="reference" type="text">
+            <label for="nameSearch">Search by name</label>
+        </div>
+    </div>
+</form>
+<div class="row">
+    <form class="col s12">
+        <div class="row">
+            <div class="input-field col s6">
+                <input placeholder="Name" id="name" type="text" class="validate">
+                <label for="name">Name</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="music_style" type="text" class="validate">
+                <label for="music_style">Music style</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="creation_year" type="text" class="validate">
+                <label for="creation_year">Creation year</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8">
+                <input id="facebook_link" type="text" class="validate">
+                <label for="facebook_link">Facebook link</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8">
+                <input id="site_link" type="text" class="validate">
+                <label for="site_link">Site link</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8">
+                <input id="youtube_link" type="text" class="validate">
+                <label for="youtube_link">Youtube link</label>
+            </div>
+        </div>
+        <div class="rom">
+            <div class="file-field input-field col s6">
+                <div class="btn">
+                    <span>File</span>
+                    <input type="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <button class="col s2 offset-s5 btn waves-effect waves-light red accent-4" name="action" type="submit">Apply
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+    </form>
+</div>
 
 
-<script src="/js/js_nav.js" type="text/JavaScript"></script>
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="/static/js/js_nav.js" type="text/JavaScript"></script>
 </body>
 </html>
