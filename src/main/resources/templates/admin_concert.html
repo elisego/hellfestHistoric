@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Admin concert</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
@@ -10,7 +10,7 @@
 </head>
 <body>
 <header th:replace="fragments/admin-nav.html :: admin-nav"></header>
-<h3>Create or modified concert</h3>
+<h3>Create a concert</h3>
 <form class="col s12" method="post" th:action="@{/admin/concert}" th:object="${concert}">
     <input th:field="*{id}" type="hidden">
     <div class="row">
@@ -48,7 +48,7 @@
     </div>
     <div class="rom">
         <div class="file-field input-field col s6">
-            <div class="btn">
+            <div class="btn waves-effect waves-light red accent-4">
                 <span>File</span>
                 <input type="file">
             </div>

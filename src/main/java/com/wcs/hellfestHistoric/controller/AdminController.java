@@ -89,34 +89,9 @@ public class AdminController {
     // pour enregister le concert
     @PostMapping("/admin/concert")
     public String postConcert(@ModelAttribute Concert concert){
-//                              @RequestParam(required = true) Long band) {
-
-//      Band newBand = new Band();
-//
-//      Optional<Band> optionalBand = bandRepository.findById(band);
-//      if(optionalBand.isPresent()){
-//        newBand = optionalBand.get();
-//      }
-//
-//        concert.setBand(newBand);
 
         concertRepository.save(concert);
 
         return "redirect:/admin/concert";
-    }
-
-    @GetMapping("admin/search")
-    public String searchBandAdmin(){
-        return "admin_search_band";
-    }
-
-    @PostMapping("admin/search")
-    public String searchBandByName(Model model,
-                                  @RequestParam(required = false) String search) {
-
-        List<Long> bandList = bandRepository.finAllBySearchName(search);
-
-        model.addAttribute("bands", bandRepository.findAllById(bandList));
-        return "redirect:/admin/search";
     }
 }
