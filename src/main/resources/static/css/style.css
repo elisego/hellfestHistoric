@@ -14,11 +14,28 @@ h3, h4, h5{
     font-family: 'IM Fell English SC', "Roboto Light";
 }
 
+h3{
+    font-size: 4rem ;
+}
+
+h5{
+    font-size: 3.5rem;
+}
+
+p{
+    font-size: 2rem;
+}
+
 /* home */
 section.center-align.flow-text.paragraphe p{
     margin-left: 5%;
     margin-right: 5%;
 }
+
+a{
+    color: #d50000;!important;
+}
+
 /* band*/
 .band-top{
     display: flex;
@@ -47,15 +64,17 @@ ul{
     display: flex;
 }
 
-.band-detail{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
 /* MOBILE */
 @media only screen and (max-width: 767px) {
+
+
+    h3{
+        font-size: 3rem ;
+    }
+
+    h5{
+        font-size: 2.5rem;
+    }
 
     /* home */
     header{
@@ -69,6 +88,11 @@ ul{
     .band-top {
         display: flex;
         flex-direction: column;
+    }
+
+    .fab, .fas {
+        font-size: 11vw;
+        margin: 0 4vw 0 4vw;
     }
 
 }
