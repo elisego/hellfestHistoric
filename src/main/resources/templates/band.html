@@ -24,20 +24,19 @@
     </div>
 </div>
 </div>
-<div class="col s10 m7">
-    <h2 class="header">Scène</h2>
+<div class="col s10 m7" th:each="c : ${concerts}">
+    <h2 class="header" th:text="${c.scene}">Scène</h2>
     <div class="card horizontal">
         <div class="card-image">
             <img src="https://lorempixel.com/100/190/nature/6">
         </div>
         <div class="card-stacked">
             <div class="card-content">
-                <p>Scène</p>
-                <p>Heure début</p>
-                <p>Heure de fin</p>
+                <p th:text="|Beginning Hour : ${c.beginningHour}|">Heure début</p>
+                <p th:text="|End hour : ${c.endHour}|">Heure de fin</p>
             </div>
             <div class="card-action">
-                <p>année</p>
+                <p th:text="|Date : ${c.date}|">année</p>
             </div>
         </div>
     </div>
