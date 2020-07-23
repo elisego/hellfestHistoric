@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -33,9 +35,10 @@ public class AdminController {
 
         Band band = new Band();
 
-        if(optionalBand.isPresent()){
+        if (optionalBand.isPresent()) {
             band = optionalBand.get();
-        } band.setName(name);
+        }
+        band.setName(name);
 
         model.addAttribute("band", band);
         return "admin_band";
@@ -67,9 +70,9 @@ public class AdminController {
     // pour afficher les infos d'un concert
     @GetMapping("/admin/concert")
     public String adminConcert(Model model,
-                            @RequestParam(required = false) Long id) {
+                               @RequestParam(required = false) Long id) {
 
-       Concert concert = new Concert();
+        Concert concert = new Concert();
 
         if (id != null) {
             Optional<Concert> optionalConcert = concertRepository.findById(id);
@@ -85,17 +88,35 @@ public class AdminController {
 
     // pour enregister le concert
     @PostMapping("/admin/concert")
-    public String postConcert(@ModelAttribute Concert concert,
-                              @RequestParam(required = true) Long band) {
+    public String postConcert(@ModelAttribute Concert concert){
+//                              @RequestParam(required = true) Long band) {
 
-        Optional<Band> optionalBand = bandRepository.findById(band);
-        if (optionalBand.isPresent()){
-            concert.setBand(optionalBand.get());
-        }
+//      Band newBand = new Band();
+//
+//      Optional<Band> optionalBand = bandRepository.findById(band);
+//      if(optionalBand.isPresent()){
+//        newBand = optionalBand.get();
+//      }
+//
+//        concert.setBand(newBand);
 
         concertRepository.save(concert);
 
         return "redirect:/admin/concert";
     }
-}
 
+    @GetMapping("admin/search")
+    public String searchBandAdmin(){
+        return "admin_search_band";
+    }
+
+    @PostMapping("admin/search")
+    public String searchBandByName(Model model,
+                                  @RequestParam(required = false) String search) {
+
+        List<Long> bandList = bandRepository.finAllBySearchName(search);
+
+        model.addAttribute("bands", bandRepository.findAllById(bandList));
+        return "redirect:/admin/search";
+    }
+}

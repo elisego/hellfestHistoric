@@ -10,7 +10,23 @@
 </head>
 <body>
 <header th:replace="fragments/admin-nav.html :: admin-nav"></header>
-<h3>Select a band</h3>
+<h3>Search a band</h3>
+<form action="/admin/search" method="post">
+    <!--    <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>-->
+    <div class="row">
+        <div class="input-field col s6 offset-s3">
+            <i class="material-icons prefix">search</i>
+            <input class="center-align validate" id="nameSearch" name="search" type="text">
+            <label for="nameSearch">Search by name</label>
+        </div>
+    </div>
+</form>
+<tbody>
+<tr th:each="band : ${bands}">
+    <td th:text="${band.name}">id</td>
+    <td><a th:href="@{/admin/band(id=${band.id})}">Edit</a></td>
+</tr>
+</tbody>
 
 
 
