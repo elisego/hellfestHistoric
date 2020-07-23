@@ -11,37 +11,38 @@
 <body>
 <header th:replace="fragments/admin-nav.html :: admin-nav"></header>
 <h3>Create or modified concert</h3>
-<form class="col s12">
+<form class="col s12" method="post" th:action="@{/admin/concert}" th:object="${concert}">
+    <input th:field="*{id}" type="hidden">
     <div class="row">
         <div class="input-field col s8">
-            <select>
-                <option value="" disabled selected>Choose your option</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
+            <select id="band" th:field="*{band.id}">
+                <option value="-1" selected>Select a band</option>
+                <option th:each="b: ${bands}"
+                        th:selected="${b.id == concert.band.id}"
+                        th:text="${b.name}"
+                        th:value="${b.id}">Aerosmith</option>
             </select>
-            <label>Materialize Select</label>
         </div>
     </div>
     <div class="row">
         <div class="input-field col s6">
-            <input class="validate" id="scene" type="text">
+            <input class="validate" id="scene" type="text" th:field="*{scene}">
             <label for="scene">Scene</label>
         </div>
     </div>
     <div class="row">
         <div class="input-field col s6">
-            <input class="validate" id="date" type="text">
+            <input class="validate" id="date" type="text" th:field="*{date}">
             <label for="date">Date</label>
         </div>
     </div>
     <div class="row">
         <div class="input-field col s5">
-            <input class="validate" id="beginning_hour" type="text">
+            <input class="validate" id="beginning_hour" type="text" th:field="*{beginningHour}">
             <label for="beginning_hour">Beginning hour</label>
         </div>
         <div class="input-field col s5 offset-s2">
-            <input class="validate" id="end_hour" type="text">
+            <input class="validate" id="end_hour" type="text" th:field="*{endHour}">
             <label for="end_hour">End hour</label>
         </div>
     </div>

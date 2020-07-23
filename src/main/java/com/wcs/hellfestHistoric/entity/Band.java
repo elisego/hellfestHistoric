@@ -31,10 +31,7 @@ public class Band {
 
     private String image;
 
-    @ManyToMany
-    @JoinTable(name = "band_concert",
-            joinColumns = @JoinColumn(name = "band_id"),
-            inverseJoinColumns = @JoinColumn(name = "concert_id"))
+    @OneToMany(mappedBy = "band")
     private List<Concert> concerts = new ArrayList<>();
 
     public Band() {

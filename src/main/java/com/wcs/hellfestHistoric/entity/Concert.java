@@ -5,6 +5,7 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Table(name ="concert")
@@ -26,6 +27,10 @@ public class Concert {
     private String endHour;
 
     private String image;
+
+    @ManyToOne
+    @JoinColumn(name="band_id")
+    private Band band;
 
     public Concert() {
     }
@@ -76,5 +81,13 @@ public class Concert {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Band getBand() {
+        return band;
+    }
+
+    public void setBand(Band band) {
+        this.band = band;
     }
 }

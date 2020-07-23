@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style_admin.css}" type="text/css">
+</head>
+<body>
+<header th:replace="fragments/admin-nav.html :: admin-nav"></header>
+<h3>Search a band</h3>
+<form action="/admin/search" method="post">
+    <!--    <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>-->
+    <div class="row">
+        <div class="input-field col s6 offset-s3">
+            <i class="material-icons prefix">search</i>
+            <input class="center-align validate" id="nameSearch" name="search" type="text">
+            <label for="nameSearch">Search by name</label>
+        </div>
+    </div>
+</form>
+<tbody>
+<tr th:each="band : ${bands}">
+    <td th:text="${band.name}">id</td>
+    <td><a th:href="@{/admin/band(id=${band.id})}">Edit</a></td>
+</tr>
+</tbody>
+
+
+
+
+</body>
+</html>
