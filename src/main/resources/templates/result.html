@@ -13,7 +13,7 @@
 <div class="col s10 m7">
     <div class="card horizontal" th:each="b: ${bands}">
         <div class="card-image">
-            <img th:src="${b.image}">
+            <img th:src="@{images/{image}(image = ${b.image})}">
         </div>
         <div class="card-stacked">
             <div class="card-content">
