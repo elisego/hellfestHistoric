@@ -4,40 +4,25 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/8f4bb5d891.js" crossorigin="anonymous"></script>
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/8f4bb5d891.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
 </head>
 <body>
 <div class="row">
-    <div class="col s12">
-        <div class="row">
-            <div class="input-field col s6">
-                <input class="validate" id="name" placeholder="Name" type="text">
-                <label for="name">Name</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s6">
-                <input class="validate" id="music_style" type="text">
-                <label for="music_style">Music style</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s6">
-                <input class="validate" id="creation_year" type="text">
-                <label for="creation_year">Creation year</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s6 socialLink">
-                <i class="fab fa-facebook"></i>
-                <i class="fab fa-youtube"></i>
-                <i class="fas fa-record-vinyl"></i>
-            </div>
+    <div class="col s12" th:object="${band}">
+        <h5 th:text="*{name}">Name</h5>
+        <h5 th:text="*{musiqStyle}">Music style</h5>
+        <h5 th:text="*{creationYear}">Creation year</h5>
+        <ul>
+            <li><a th:href="*{facebookLink}"> <i class="fab fa-facebook"></i></a></li>
+            <li><a th:href="*{youtubeLink}"> <i class="fab fa-youtube"></i></a></li>
+            <li><a th:href="*{siteLink}"> <i class="fas fa-record-vinyl"></i></a></li>
+        </ul>
         </div>
     </div>
+</div>
 </div>
 <div class="col s10 m7">
     <h2 class="header">Scène</h2>

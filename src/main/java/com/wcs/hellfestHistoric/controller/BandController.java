@@ -32,7 +32,11 @@ public class BandController {
     }
 
     @GetMapping("/band")
-    public String band() {
+    public String bandById(@RequestParam Long id, Model model ) {
+
+        Band band = bandRepository.findById(id).get();
+
+        model.addAttribute("band", band);
 
         return "band";
     }

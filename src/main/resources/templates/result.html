@@ -21,7 +21,7 @@
                 <p th:text="${b.musiqStyle}">Style</p>
             </div>
             <div class="card-action">
-                <a href="#">See the group sheet</a>
+                <a th:href="@{/band?id={id}(id =${b.id})}">See the group sheet</a>
             </div>
         </div>
     </div>
