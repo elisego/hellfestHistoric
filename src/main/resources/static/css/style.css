@@ -14,7 +14,26 @@ h3{
     font-family: 'IM Fell English SC', "Roboto Light";
 }
 
+section.center-align.flow-text.paragraphe p{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
 .fab, .fas {
     font-size: 4vw;
     margin: 0 0.5vw 0 0.5vw;
+}
+
+/* MOBILE */
+@media only screen and (max-width: 767px) {
+
+    header{
+        height: 350px;
+        background-image: url("/images/Hellfest-cathedrale_mini.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+
+
 }

@@ -2,6 +2,7 @@
 <html lang=en xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
     <title>Home</title>
     <!-- Compiled and minified CSS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -16,15 +17,29 @@
 <form action="/results" method="get">
 <!--    <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>-->
     <div class="row">
-        <div class="input-field col s6 offset-s3">
+        <div class="input-field col s10 offset-s1 m8 offset-m2">
             <i class="material-icons prefix">search</i>
             <input class="center-align validate" id="search" name="search" type="search">
             <label for="search">Search by name</label>
         </div>
     </div>
 </form>
+<section class="center-align flow-text paragraphe">
+    <p>Bonjour à tous,
 
+        Le but de ce site est de retrouver à quelle édition du Hellfest, nous avons vue tel ou tel groupe !
 
+        J'ai créée ce site pour le dernier checkpoint de mes 5 mois passé à la Wild Code School de Nantes.
+        Ceci est donc est projet créé sur 2 jours. Soyez indulgent !
+        Je compte le mettre à jour et le faire évoluer régulièrement
+        C'est un site de fan pour les fans!
+
+        Pour les plus technos d'entre vous, j'ai créée le site seule mais pas tout à fait:
+        HTML, CSS, SQL, Spring Boot Hibernate, et Materialize
+        Pour les évolutions du site je compte mettre en place Spring sécurity afin que chacun puisse avoir son profil et puisse garder en mémoire les concerts qu'ils ont vue et pourquoi pas y mettre un commentaire.
+        Je pense aussi faire en sorte que vous puissiez partager vos plus belles photos de ces 3 jours passés en ENFER !!
+    </p>
+</section>
 <script crossorigin="anonymous"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         src="https://code.jquery.com/jquery-3.4.1.slim.min.js">
