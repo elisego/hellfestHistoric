@@ -2,6 +2,7 @@ package com.wcs.hellfestHistoric.controller;
 
 import com.wcs.hellfestHistoric.entity.Band;
 import com.wcs.hellfestHistoric.repository.BandRepository;
+import com.wcs.hellfestHistoric.repository.ConcertRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,9 @@ public class BandController {
     @Autowired
     private BandRepository bandRepository;
 
+    @Autowired
+    private ConcertRepository concertRepository;
+
     @GetMapping("/results")
     public String results(Model model,
                              @RequestParam String search) {
@@ -32,7 +36,12 @@ public class BandController {
     }
 
     @GetMapping("/band")
-    public String band() {
+    public String bandById(@RequestParam Long id, Model model ) {
+
+        Band band = bandRepository.findById(id).get();
+
+        model.addAttribute("band", band);
+        model.addAttribute("concerts", concertRepository.findConcertByBandId(id));
 
         return "band";
     }
