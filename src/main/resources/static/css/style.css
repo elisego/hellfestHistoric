@@ -10,11 +10,65 @@ h1{
     font-family: 'IM Fell English SC', "Roboto Light";
 }
 
-h3{
+h3, h4, h5{
     font-family: 'IM Fell English SC', "Roboto Light";
 }
 
+/* home */
+section.center-align.flow-text.paragraphe p{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+/* band*/
+.band-top{
+    display: flex;
+}
+
+.bang-image img{
+    width: 100%;
+    flex: 2 1 auto;
+}
+
+.band-detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
 .fab, .fas {
-    font-size: 4vw;
+    font-size: 3.5vw;
     margin: 0 0.5vw 0 0.5vw;
+    color: black;
+}
+
+ul{
+    display: flex;
+}
+
+.band-detail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* MOBILE */
+@media only screen and (max-width: 767px) {
+
+    /* home */
+    header{
+        height: 350px;
+        background-image: url("/images/Hellfest-cathedrale_mini.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    /* band */
+    .band-top {
+        display: flex;
+        flex-direction: column;
+    }
+
 }
