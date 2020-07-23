@@ -16,7 +16,7 @@ public interface BandRepository extends JpaRepository<Band, Long> {
 
     List<Band> findAllByName(String name);
 
-    @Query(value = "SELECT band.id FROM band WHERE name like '%:search%')",
+    @Query(value = "SELECT band.id FROM band WHERE name like %:search%",
             nativeQuery = true)
     List<Long> finAllBySearchName(@Param("search") String search);
 
