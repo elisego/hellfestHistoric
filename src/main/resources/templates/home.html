@@ -13,13 +13,13 @@
 <header>
 </header>
 <h1 class="center-align red accent-4">Welcome in Historic Hellfest</h1>
-<form action="/home/search" method="post">
+<form action="/results" method="get">
 <!--    <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>-->
     <div class="row">
         <div class="input-field col s6 offset-s3">
             <i class="material-icons prefix">search</i>
-            <input class="center-align validate" id="nameSearch" name="reference" type="text">
-            <label for="nameSearch">Search by name</label>
+            <input class="center-align validate" id="search" name="search" type="search">
+            <label for="search">Search by name</label>
         </div>
     </div>
 </form>

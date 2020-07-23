@@ -9,16 +9,16 @@
     <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
 </head>
 <body>
-<h3>Result</h3>
+<h3>Results</h3>
 <div class="col s10 m7">
-    <div class="card horizontal">
+    <div class="card horizontal" th:each="b: ${bands}">
         <div class="card-image">
-            <img src="https://lorempixel.com/100/190/nature/6">
+            <img th:src="${b.image}">
         </div>
         <div class="card-stacked">
             <div class="card-content">
-                <p>Nom du groupe</p>
-                <p>Style</p>
+                <p th:text="${b.name}">Nom du groupe</p>
+                <p th:text="${b.musiqStyle}">Style</p>
             </div>
             <div class="card-action">
                 <a href="#">See the group sheet</a>
@@ -26,7 +26,6 @@
         </div>
     </div>
 </div>
-
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>

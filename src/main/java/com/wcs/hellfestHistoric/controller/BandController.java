@@ -18,13 +18,15 @@ public class BandController {
     @Autowired
     private BandRepository bandRepository;
 
-    @PostMapping("/home/search")
-    public String bandSearch(Model model, @RequestParam String name) {
+    @GetMapping("/results")
+    public String results(Model model,
+                             @RequestParam String search) {
 
+        List<Long> bandsList = bandRepository.finAllBySearchName(search);
 
-        List<Band> bands = bandRepository.findAllByName(name);
+        List<Band> bands = bandRepository.findAllById(bandsList);
 
-        model.addAttribute("bands", bandRepository.findAll());
+        model.addAttribute("bands", bands);
 
         return "result";
     }
@@ -33,11 +35,5 @@ public class BandController {
     public String band() {
 
         return "band";
-    }
-
-    @GetMapping("/result")
-    public String result() {
-
-        return "result";
     }
 }
