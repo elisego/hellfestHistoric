@@ -2,8 +2,13 @@ package com.wcs.hellfestHistoric.controller;
 
 import com.wcs.hellfestHistoric.entity.Band;
 import com.wcs.hellfestHistoric.entity.Concert;
+import com.wcs.hellfestHistoric.entity.Role;
+import com.wcs.hellfestHistoric.entity.User;
 import com.wcs.hellfestHistoric.repository.BandRepository;
 import com.wcs.hellfestHistoric.repository.ConcertRepository;
+import com.wcs.hellfestHistoric.repository.RoleRepository;
+import com.wcs.hellfestHistoric.repository.UserRepository;
+import com.wcs.hellfestHistoric.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +31,45 @@ public class AdminController {
     @Autowired
     private ConcertRepository concertRepository;
 
-    // pour afficher les info du groupe après la recherche
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @GetMapping("/login")
+    public String getLogIn() {
+
+        return "admin_login";
+    }
+
+    @GetMapping("/admin/admin")
+    public String adminAdmin(Model model) {
+
+        User user = userService.getLoggedUsername();
+
+        List<User> userList = userRepository.findAll();
+
+        List<Role> roles = roleRepository.findAll();
+
+        model.addAttribute("user", user);
+        model.addAttribute("newUser", new User());
+        model.addAttribute("users", userList);
+        model.addAttribute("roles", roles);
+        return "admin_admin";
+    }
+
+    @GetMapping("/admin/profile")
+    public String adminProfile(Model model) {
+        User user = userService.getLoggedUsername();
+        model.addAttribute("user", user);
+        return "admin_profile";
+    }
+
+    // pour afficher les info du groupe
     @GetMapping("/admin/band")
     public String adminBand(Model model,
                             @RequestParam(required = false) String name) {
@@ -40,6 +83,9 @@ public class AdminController {
         }
         band.setName(name);
 
+        User user = userService.getLoggedUsername();
+
+        model.addAttribute("user", user);
         model.addAttribute("band", band);
         return "admin_band";
     }
@@ -57,12 +103,15 @@ public class AdminController {
     @PostMapping("/admin/band/search")
     public String bandSearch(Model model, @RequestParam String name) {
 
+        User user = userService.getLoggedUsername();
+
         Band band = new Band();
         Optional<Band> optionalBand = bandRepository.findByName(name);
         if (optionalBand.isPresent()) {
             band = optionalBand.get();
         }
         model.addAttribute("band", band);
+        model.addAttribute("user", user);
 
         return "admin_band";
     }
@@ -80,7 +129,8 @@ public class AdminController {
                 concert = optionalConcert.get();
             }
         }
-
+        User user = userService.getLoggedUsername();
+        model.addAttribute("user", user);
         model.addAttribute("concert", concert);
         model.addAttribute("bands", bandRepository.findAll());
         return "admin_concert";
@@ -88,8 +138,10 @@ public class AdminController {
 
     // pour enregister le concert
     @PostMapping("/admin/concert")
-    public String postConcert(@ModelAttribute Concert concert){
+    public String postConcert(@ModelAttribute Concert concert, Model model){
 
+        User user = userService.getLoggedUsername();
+        model.addAttribute("user", user);
         concertRepository.save(concert);
 
         return "redirect:/admin/concert";

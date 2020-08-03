@@ -6,8 +6,16 @@
     <link rel="stylesheet" th:href="@{/css/style_admin.css}" type="text/css">
 </head>
 <body>
-<header th:fragment="admin-nav">
+<header th:fragment="admin-nav (user)">
     <ul id="slide-out" class="sidenav sidenav-fixed red accent-4">
+        <li>
+            <div class="user-view">
+                <h1>Hellfest Historic</span></h1>
+                <div class="admin-header-user">
+                    <a th:href="@{/admin/profile}" ><span class="name" th:text="${user.username}">John Doe</span></a>
+                </div>
+            </div>
+        </li>
         <li><a href="/admin/band">Band</a></li>
         <li><a href="/admin/concert">Concert</a></li>
     </ul>

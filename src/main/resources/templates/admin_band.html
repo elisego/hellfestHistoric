@@ -9,7 +9,7 @@
     <link rel="stylesheet" th:href="@{/css/style_admin.css}" type="text/css">
 </head>
 <body>
-<header th:replace="fragments/admin-nav.html :: admin-nav"></header>
+<header th:replace="fragments/admin-nav.html :: admin-nav (${user})"></header>
 <h3>Create or modified band</h3>
 <form action="/admin/band/search" method="post">
     <div class="row">
