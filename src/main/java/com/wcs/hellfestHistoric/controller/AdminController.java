@@ -62,6 +62,12 @@ public class AdminController {
         return "admin_admin";
     }
 
+    @GetMapping("/admin/admin/delete")
+    public String deleteAdmin(@RequestParam Long id) {
+        userRepository.deleteById(id);
+        return "redirect:/admin/admin";
+    }
+
     @GetMapping("/admin/profile")
     public String adminProfile(Model model) {
         User user = userService.getLoggedUsername();
