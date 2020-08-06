@@ -9,7 +9,7 @@
     <link rel="stylesheet" th:href="@{/css/style_admin.css}" type="text/css">
 </head>
 <body>
-<header th:replace="fragments/admin-nav.html :: admin-nav"></header>
+<header th:replace="fragments/admin-nav.html :: admin-nav (${user})"></header>
 <h3>Create a concert</h3>
 <form class="col s12" method="post" th:action="@{/admin/concert}" th:object="${concert}">
     <input th:field="*{id}" type="hidden">
