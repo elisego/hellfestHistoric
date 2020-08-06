@@ -11,7 +11,7 @@
 <body>
 <header th:replace="fragments/admin-nav.html :: admin-nav (${user})"></header>
 <main class="admin-admin">
-    <h2>Profile</h2>
+    <h3>Profile</h3>
     <form action="/admin/profile" method="post" id="createForm">
         <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden">
         <div class="row">
