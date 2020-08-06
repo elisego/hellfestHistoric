@@ -11,6 +11,7 @@
 </head>
 <body>
 <header th:replace="fragments/admin-nav.html :: admin-nav (${user})"></header>
+<h3>Administration</h3>
 <table>
     <thead>
     <tr>
@@ -19,11 +20,11 @@
         <th>Modification / Suppression</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody th:each="user : ${users}">
     <tr>
-        <td>Admin</td>
-        <td>Admin / User</td>
-        <td><i class="fas fa-user-edit"></i><i class="fas fa-trash-alt"></i></td>
+        <td th:text="${user.username}">Admin</td>
+        <td th:text="${user.roles.get(0).name}">Roles</td>
+        <td><a th:href="@{/admin/admin/delete(id=${user.id})}"> <i class="fas fa-trash-alt"> </i> </td>
     </tr>
     </tbody>
 </table>
