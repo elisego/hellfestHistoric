@@ -1,6 +1,6 @@
 header{
     height: 400px;
-    background-image: url("/images/Hellfest-cathedrale.jpg");
+    background-image: url("/images/Hellfest-cathedrale_mini.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -62,6 +62,10 @@ a{
 
 ul{
     display: flex;
+}
+/* result*/
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+    color: red;
 }
 
 /* MOBILE */

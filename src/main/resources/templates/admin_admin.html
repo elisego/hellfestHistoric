@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Admin</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/8f4bb5d891.js"></script>
+    <link rel="stylesheet" th:href="@{/css/style_admin.css}" type="text/css">
+</head>
+<body>
+<header th:replace="fragments/admin-nav.html :: admin-nav (${user})"></header>
+<table>
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Role</th>
+        <th>Modification / Suppression</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Admin</td>
+        <td>Admin / User</td>
+        <td><i class="fas fa-user-edit"></i><i class="fas fa-trash-alt"></i></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
