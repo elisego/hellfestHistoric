@@ -12,12 +12,12 @@
 <header th:replace="fragments/admin-nav.html :: admin-nav (${user})"></header>
 <main class="admin-admin">
     <h3>Profile</h3>
-    <form action="/admin/profile" method="post" id="createForm">
+    <form action="/admin/admin/modify" method="post" id="createForm">
         <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden">
         <div class="row">
             <div class="input-field col s8">
-                <input disabled th:value="${user.username}" id="disabled" type="text" class="validate">
-                <label for="disabled">Username</label>
+                <input disabled th:value="${user.username}" id="username" type="text" class="validate">
+                <label for="username">Username</label>
             </div>
         </div>
         <div class="row">

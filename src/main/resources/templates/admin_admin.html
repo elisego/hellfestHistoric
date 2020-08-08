@@ -11,7 +11,12 @@
 </head>
 <body>
 <header th:replace="fragments/admin-nav.html :: admin-nav (${user})"></header>
-<h3>Administration</h3>
+    <h3>Administration</h3>
+<div class="row">
+    <form class="col s3 offset-s9" method="get" action="/admin/profile/create">
+    <button class="btn waves-effect waves-light red accent-4" name="action" type="submit">Create new admin</button>
+    </form>
+</div>
 <table>
     <thead>
     <tr>
@@ -24,9 +29,11 @@
     <tr>
         <td th:text="${user.username}">Admin</td>
         <td th:text="${user.roles.get(0).name}">Roles</td>
-        <td><a th:href="@{/admin/admin/delete(id=${user.id})}"> <i class="fas fa-trash-alt"> </i> </td>
+        <td><a th:href="@{/admin/profile/delete(id=${user.id})}"> <i class="fas fa-trash-alt"> </i></a></td>
+        <td><a th:href="@{/admin/profile/create(id=${user.id})}"> <i class="fas fa-edit"></i> </a></td>
     </tr>
     </tbody>
 </table>
+
 </body>
 </html>

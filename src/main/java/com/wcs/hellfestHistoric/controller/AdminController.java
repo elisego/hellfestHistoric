@@ -10,6 +10,7 @@ import com.wcs.hellfestHistoric.repository.RoleRepository;
 import com.wcs.hellfestHistoric.repository.UserRepository;
 import com.wcs.hellfestHistoric.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,6 +41,9 @@ public class AdminController {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @GetMapping("/login")
     public String getLogIn() {
 
@@ -53,19 +57,47 @@ public class AdminController {
 
         List<User> userList = userRepository.findAll();
 
-        List<Role> roles = roleRepository.findAll();
-
         model.addAttribute("user", user);
-        model.addAttribute("newUser", new User());
         model.addAttribute("users", userList);
-        model.addAttribute("roles", roles);
         return "admin_admin";
     }
 
-    @GetMapping("/admin/admin/delete")
+    @GetMapping("/admin/profile/delete")
     public String deleteAdmin(@RequestParam Long id) {
         userRepository.deleteById(id);
         return "redirect:/admin/admin";
+    }
+
+    @GetMapping("/admin/profile/create")
+    public String modifyAdmin(@RequestParam Long id,
+                              @ModelAttribute User userUp,
+                              Model model) {
+
+        User user = userService.getLoggedUsername();
+        model.addAttribute("user", user);
+
+        User userModify = new User();
+        if(id != null) {
+            if(userRepository.findById(id).isPresent()){
+                userModify = userRepository.findById(id).get();
+            }
+
+        }
+        userModify.setUsername(userUp.getUsername());
+        if(!userUp.getPassword().equals("")){
+            userModify.setPassword(passwordEncoder.encode(userUp.getPassword()));
+        }
+
+        Optional<Role> optionalRole = roleRepository.findByName(userUp.getUsername());
+
+        if(optionalRole.isPresent()){
+            userModify.setRole(optionalRole.get());
+        }
+
+        model.addAttribute("userM", userModify );
+
+
+        return "admin_profilAdmin";
     }
 
     @GetMapping("/admin/profile")
