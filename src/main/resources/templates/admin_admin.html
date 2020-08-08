@@ -28,7 +28,7 @@
     <tbody th:each="user : ${users}">
     <tr>
         <td th:text="${user.username}">Admin</td>
-        <td th:text="${user.roles.get(0).name}">Roles</td>
+        <td th:text="${user.role.name}">Roles</td>
         <td><a th:href="@{/admin/profile/delete(id=${user.id})}"> <i class="fas fa-trash-alt"> </i></a></td>
         <td><a th:href="@{/admin/profile/create(id=${user.id})}"> <i class="fas fa-edit"></i> </a></td>
     </tr>

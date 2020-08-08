@@ -34,7 +34,7 @@ public class MainController {
         return "home";
     }
 
-  /*  @GetMapping("/init")
+   /* @GetMapping("/init")
     @ResponseBody
     public User init() {
 
@@ -48,7 +48,7 @@ public class MainController {
         Optional<Role> optionalRole = roleRepository.findByName("ROLE_ADMIN");
         User user = new User("Admin", passwordEncoder.encode("Hellfest666"));
         if (optionalRole.isPresent()) {
-            user.getRoles().add(optionalRole.get());
+            user.setRole(optionalRole.get());
         }
         return userRepository.save(user);
     }*/

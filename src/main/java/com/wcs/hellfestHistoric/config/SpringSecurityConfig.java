@@ -42,7 +42,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // https://openclassrooms.com/en/courses/5683681-secure-your-web-application-with-spring-security/6695821-configure-role-based-access-control
         http.authorizeRequests()
-//                .antMatchers("/init").permitAll() // temporary route
+ //               .antMatchers("/init").permitAll() // temporary route
                 .antMatchers("/").permitAll()
                 .antMatchers("/home").permitAll()
                 .antMatchers("/results").permitAll()

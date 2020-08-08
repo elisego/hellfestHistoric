@@ -81,14 +81,14 @@ public class AdminController {
             if(userRepository.findById(id).isPresent()){
                 userModify = userRepository.findById(id).get();
             }
-
         }
+
         userModify.setUsername(userUp.getUsername());
         if(!userUp.getPassword().equals("")){
             userModify.setPassword(passwordEncoder.encode(userUp.getPassword()));
         }
 
-        Optional<Role> optionalRole = roleRepository.findByName(userUp.getUsername());
+        Optional<Role> optionalRole = roleRepository.findById(userUp.getId());
 
         if(optionalRole.isPresent()){
             userModify.setRole(optionalRole.get());

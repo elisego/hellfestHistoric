@@ -16,9 +16,8 @@ public class Role {
 
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
-    @JsonIgnore
-    private List<User> users = new ArrayList<>();
+    @OneToMany(mappedBy = "role")
+    private List<User> users;
 
     public Role() {
     }
