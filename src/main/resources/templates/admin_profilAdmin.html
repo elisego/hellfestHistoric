@@ -12,10 +12,11 @@
 <header th:replace="fragments/admin-nav.html :: admin-nav (${user})"></header>
 <h3>Create or modified a Profil</h3>
 
-<div class="row" th:object="user">
-    <form class="col s12">
+<div class="row">
+    <form class="col s12" method="post" th:action="/" th:object="">
         <div class="row">
             <div class="input-field col s6">
+                <input th:field="${}" type="hidden" >
                 <input id="username" type="text" class="validate">
                 <label for="username">Username</label>
             </div>
