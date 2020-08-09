@@ -34,7 +34,7 @@ public class MainController {
         return "home";
     }
 
-   /* @GetMapping("/init")
+    @GetMapping("/init")
     @ResponseBody
     public User init() {
 
@@ -51,7 +51,7 @@ public class MainController {
             user.setRole(optionalRole.get());
         }
         return userRepository.save(user);
-    }*/
+    }
 
 
 }

@@ -83,12 +83,35 @@ public class AdminController {
     }
 // enregister un profil
     @PostMapping("admin/profile/create")
-    public String postCreateUser(
-            @ModelAttribute User user) {
+    public String postCreateUser(Model model,
+            @RequestParam(defaultValue = "", required = false) Long id,
+            @RequestParam String username,
+            @RequestParam(defaultValue = "", required = false) String password,
+            @RequestParam Long roleId) {
 
+        User user1 = new User();
+        if(id != null){
+            if(userRepository.findById(id).isPresent()){
+                user1 = userRepository.findById(id).get();
+            }
+        }
 
-        userRepository.save(user);
-        return "admin_admin";
+        user1.setUsername(username);
+        if (!password.equals("")){
+            user1.setPassword(passwordEncoder.encode(password));
+        }
+
+        Optional<Role> optionalRole = roleRepository.findById(roleId);
+
+        if(optionalRole.isPresent()){
+            user1.setRole(optionalRole.get());
+            userRepository.save(user1);
+        }
+
+        User user = userService.getLoggedUsername();
+        model.addAttribute("user", user);
+
+        return "redirect:/admin/admin";
     }
 
 //    //afficher les infos d'un user pour pouvoir le modifier

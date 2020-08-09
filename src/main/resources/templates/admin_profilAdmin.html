@@ -16,14 +16,14 @@
     <form class="col s12" method="post" th:action="@{/admin/profile/create}" th:object="${newUser}">
         <div class="row">
             <div class="input-field col s6">
-                <input th:field="${user.id}" type="hidden">
+                <input th:field="*{id}" type="hidden">
                 <input class="validate" id="username" th:field="*{username}" type="text">
                 <label for="username">Username</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s6">
-                <select id="role" name="role">
+                <select id="roleId" name="roleId">
                     <option disabled selected value="">Select role</option>
                     <option th:each="role: ${roles}"
                             th:selected="${role.id == user.role.id}"
