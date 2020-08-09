@@ -10,6 +10,8 @@ import com.wcs.hellfestHistoric.repository.RoleRepository;
 import com.wcs.hellfestHistoric.repository.UserRepository;
 import com.wcs.hellfestHistoric.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,12 +42,15 @@ public class AdminController {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @GetMapping("/login")
     public String getLogIn() {
 
         return "admin_login";
     }
-
+// afficher la liste de tous les utilisateurs
     @GetMapping("/admin/admin")
     public String adminAdmin(Model model) {
 
@@ -53,20 +58,113 @@ public class AdminController {
 
         List<User> userList = userRepository.findAll();
 
-        List<Role> roles = roleRepository.findAll();
-
         model.addAttribute("user", user);
-        model.addAttribute("newUser", new User());
         model.addAttribute("users", userList);
-        model.addAttribute("roles", roles);
         return "admin_admin";
     }
-
-    @GetMapping("/admin/admin/delete")
+// supprimer un utilisateur
+    @GetMapping("/admin/profile/delete")
     public String deleteAdmin(@RequestParam Long id) {
         userRepository.deleteById(id);
         return "redirect:/admin/admin";
     }
+
+    // pour creer un profil
+    @GetMapping ("admin/profile/create")
+        public String createUser(Model model){
+
+        User user = userService.getLoggedUsername();
+        model.addAttribute("user", user);
+
+        User newUser = new User();
+        model.addAttribute("roles", roleRepository.findAll());
+        model.addAttribute("newUser", newUser);
+        return "admin_profilAdmin";
+    }
+// enregister un profil
+    @PostMapping("admin/profile/create")
+    public String postCreateUser(Model model,
+            @RequestParam(defaultValue = "", required = false) Long id,
+            @RequestParam String username,
+            @RequestParam(defaultValue = "", required = false) String password,
+            @RequestParam Long roleId) {
+
+        User user1 = new User();
+        if(id != null){
+            if(userRepository.findById(id).isPresent()){
+                user1 = userRepository.findById(id).get();
+            }
+        }
+
+        user1.setUsername(username);
+        if (!password.equals("")){
+            user1.setPassword(passwordEncoder.encode(password));
+        }
+
+        Optional<Role> optionalRole = roleRepository.findById(roleId);
+
+        if(optionalRole.isPresent()){
+            user1.setRole(optionalRole.get());
+            userRepository.save(user1);
+        }
+
+        User user = userService.getLoggedUsername();
+        model.addAttribute("user", user);
+
+        return "redirect:/admin/admin";
+    }
+
+//    //afficher les infos d'un user pour pouvoir le modifier
+//    @GetMapping("/admin/profile/update")
+//    public String adminAdminProfile(Model model,
+//                                    @RequestParam(required = true) Long userId){
+//
+//        User user1 = new User();
+//
+//        Optional<User> optionalUser = userRepository.findById(userId);
+//
+//        if(optionalUser.isPresent()){
+//            user1 = optionalUser.get();
+//        }
+//
+//        User user = userService.getLoggedUsername();
+//        model.addAttribute("user", user);
+//        model.addAttribute("newUser", user1);
+//        return "admin_adminProfil";
+//    }
+
+//
+//    @PostMapping("/admin/profile/create")
+////    public String modifyAdmin(@RequestParam (defaultValue = "") Long id,
+////                              @RequestParam String username,
+////                              @RequestParam String password,
+////                              @RequestParam Long roleid,
+//                              Model model) {
+//
+////        User user = userService.getLoggedUsername();
+//        model.addAttribute("user", user);
+//
+//        User userM = new User();
+//        if(id != null) {
+//            if(userRepository.findById(id).isPresent()){
+//                userM = userRepository.findById(id).get();
+//            }
+//        }
+//
+//        userM.setUsername(username);
+//        if(!password.equals("")){
+//            userM.setPassword(passwordEncoder.encode(password));
+//        }
+//
+//        Optional<Role> optionalRole = roleRepository.findById(roleid);
+//
+//        if(optionalRole.isPresent()){
+//            userM.setRole(optionalRole.get());
+//            userRepository.save(userM);
+////        }
+//
+//        return "redirect:/admin/admin";
+//    }
 
     @GetMapping("/admin/profile")
     public String adminProfile(Model model) {
