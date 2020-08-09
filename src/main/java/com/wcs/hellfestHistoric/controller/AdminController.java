@@ -77,39 +77,38 @@ public class AdminController {
         model.addAttribute("user", user);
 
         User newUser = new User();
-
+        model.addAttribute("roles", roleRepository.findAll());
         model.addAttribute("newUser", newUser);
         return "admin_profilAdmin";
     }
-// enregister
+// enregister un profil
     @PostMapping("admin/profile/create")
     public String postCreateUser(
-            @ModelAttribute User user
-    ) {
+            @ModelAttribute User user) {
+
+
         userRepository.save(user);
         return "admin_admin";
     }
 
-
-
-    //afficher les infos d'un user pour pouvoir le modifier
-    @GetMapping("/admin/profile/update")
-    public String adminAdminProfile(Model model,
-                                    @RequestParam(required = true) Long userId){
-
-        User user1 = new User();
-
-        Optional<User> optionalUser = userRepository.findById(userId);
-
-        if(optionalUser.isPresent()){
-            user1 = optionalUser.get();
-        }
-
-        User user = userService.getLoggedUsername();
-        model.addAttribute("user", user);
-        model.addAttribute("newUser", user1);
-        return "admin_adminProfil";
-    }
+//    //afficher les infos d'un user pour pouvoir le modifier
+//    @GetMapping("/admin/profile/update")
+//    public String adminAdminProfile(Model model,
+//                                    @RequestParam(required = true) Long userId){
+//
+//        User user1 = new User();
+//
+//        Optional<User> optionalUser = userRepository.findById(userId);
+//
+//        if(optionalUser.isPresent()){
+//            user1 = optionalUser.get();
+//        }
+//
+//        User user = userService.getLoggedUsername();
+//        model.addAttribute("user", user);
+//        model.addAttribute("newUser", user1);
+//        return "admin_adminProfil";
+//    }
 
 //
 //    @PostMapping("/admin/profile/create")

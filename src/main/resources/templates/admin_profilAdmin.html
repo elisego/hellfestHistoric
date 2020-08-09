@@ -13,29 +13,35 @@
 <h3>Create or modified a Profil</h3>
 
 <div class="row">
-    <form class="col s12" method="post" th:action="/" th:object="">
+    <form class="col s12" method="post" th:action="@{/admin/profile/create}" th:object="${newUser}">
         <div class="row">
             <div class="input-field col s6">
-                <input th:field="${}" type="hidden" >
-                <input id="username" type="text" class="validate">
+                <input th:field="${user.id}" type="hidden">
+                <input class="validate" id="username" th:field="*{username}" type="text">
                 <label for="username">Username</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s6">
-                <input id="role" type="text" class="validate">
-                <label for="role">Username</label>
+                <select id="role" name="role">
+                    <option disabled selected value="">Select role</option>
+                    <option th:each="role: ${roles}"
+                            th:selected="${role.id == user.role.id}"
+                            th:text="${role.name}"
+                            th:value="${role.id}">Role Admin
+                    </option>
+                </select>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s6">
-                <input id="password" type="text" class="validate">
+                <input class="validate" id="password" th:field="*{password}" type="text">
                 <label for="password">Password</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s6">
-                <input id="password2" type="text" class="validate">
+                <input class="validate" id="password2" th:field="*{password}" type="text">
                 <label for="password2">Confirm your password</label>
             </div>
         </div>
@@ -46,6 +52,13 @@
         </div>
     </form>
 </div>
-
+<script crossorigin="anonymous"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        src="https://code.jquery.com/jquery-3.4.1.slim.min.js">
+</script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="/js/js_nav.js" type="text/JavaScript"></script>
+<script src="/js/js_admin.js" type="text/JavaScript"></script>
 </body>
 </html>
