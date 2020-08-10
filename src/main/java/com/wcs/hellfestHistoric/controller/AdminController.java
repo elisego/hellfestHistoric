@@ -114,57 +114,26 @@ public class AdminController {
         return "redirect:/admin/admin";
     }
 
-//    //afficher les infos d'un user pour pouvoir le modifier
-//    @GetMapping("/admin/profile/update")
-//    public String adminAdminProfile(Model model,
-//                                    @RequestParam(required = true) Long userId){
-//
-//        User user1 = new User();
-//
-//        Optional<User> optionalUser = userRepository.findById(userId);
-//
-//        if(optionalUser.isPresent()){
-//            user1 = optionalUser.get();
-//        }
-//
-//        User user = userService.getLoggedUsername();
-//        model.addAttribute("user", user);
-//        model.addAttribute("newUser", user1);
-//        return "admin_adminProfil";
-//    }
+    //afficher les infos d'un user pour pouvoir le modifier
+    @GetMapping("/admin/profile/update")
+    public String adminAdminProfile(Model model,
+                                    @RequestParam(required = true) Long id){
 
-//
-//    @PostMapping("/admin/profile/create")
-////    public String modifyAdmin(@RequestParam (defaultValue = "") Long id,
-////                              @RequestParam String username,
-////                              @RequestParam String password,
-////                              @RequestParam Long roleid,
-//                              Model model) {
-//
-////        User user = userService.getLoggedUsername();
-//        model.addAttribute("user", user);
-//
-//        User userM = new User();
-//        if(id != null) {
-//            if(userRepository.findById(id).isPresent()){
-//                userM = userRepository.findById(id).get();
-//            }
-//        }
-//
-//        userM.setUsername(username);
-//        if(!password.equals("")){
-//            userM.setPassword(passwordEncoder.encode(password));
-//        }
-//
-//        Optional<Role> optionalRole = roleRepository.findById(roleid);
-//
-//        if(optionalRole.isPresent()){
-//            userM.setRole(optionalRole.get());
-//            userRepository.save(userM);
-////        }
-//
-//        return "redirect:/admin/admin";
-//    }
+        User user1 = new User();
+
+        Optional<User> optionalUser = userRepository.findById(id);
+
+        if(optionalUser.isPresent()){
+            user1 = optionalUser.get();
+        }
+
+        User user = userService.getLoggedUsername();
+        model.addAttribute("user", user);
+        model.addAttribute("newUser", user1);
+        model.addAttribute("roles", roleRepository.findAll());
+        return "admin_profilAdmin";
+    }
+
 
     @GetMapping("/admin/profile")
     public String adminProfile(Model model) {
